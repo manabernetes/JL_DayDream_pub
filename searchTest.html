@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>検索UIテストページ</title>
+    <script>
+        window.onload = function() {
+            console.log('onload');
+            TS201.onSearch = function(searchWord) {
+                console.log('検索文字列: ' + searchWord);
+                document.getElementById('result').textContent = searchWord;
+            }
+        }
+
+        function onClickSearch() {
+            console.log('onClickSearch');
+            TS201.showSearchUI();
+        }
+
+    </script>
+</head>
+<body>
+<button id="button_search" type="button" onclick="onClickSearch();">検索UI表示</button>
+&nbsp; 検索文字列: <span id="result"></span>
+</body>
+</html>
+<html>
+
