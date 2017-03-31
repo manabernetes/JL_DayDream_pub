@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>音声認識テストページ</title>
+    <script>
+        // 1. 音声認識のイベント関数を設定する
+        TS201SpeechRecognizer.onReadyForSpeech = function () {
+            document.getElementById('result1').innerHTML = '1.音声認識の準備ができました';
+        };
+
+        TS201SpeechRecognizer.onBeginningOfSpeech = function () {
+            document.getElementById('result2').innerHTML = '2.音声認識を開始しました';
+        };
+
+        TS201SpeechRecognizer.onRmsChanged = function (dB) {
+            document.getElementById('result3').innerHTML = '3.音声レベルが変更されました: ' + dB + ' dB';
+        };
+
+        TS201SpeechRecognizer.onPartialResults = function (partialResult1, partialResult2) {
+            document.getElementById('result4-1').innerHTML = '4.音声認識の途中経過（確定済）: ' + partialResult1;
+            document.getElementById('result4-2').innerHTML = '4.音声認識の途中経過（未確定）: ' + partialResult2;
+        };
+
+        TS201SpeechRecognizer.onEndOfSpeech = function () {
+            document.getElementById('result5').innerHTML = '5.音声認識が終了しました';
+        };
+
+        TS201SpeechRecognizer.onResults = function (result) {
+            document.getElementById('result6-1').innerHTML = '6.音声認識の結果: ' + result;
+        };
+
+        TS201SpeechRecognizer.onError = function (errorNo, errorMessage) {
+            document.getElementById('result').innerHTML += '6^. 音声認識に失敗しました: ' + errorNo + ' : ' + errorMessage;
+        };
+
+        function clearLog() {
+            document.getElementById('result1').innerHTML = "";
+            document.getElementById('result2').innerHTML = "";
+            document.getElementById('result3').innerHTML = "";
+            document.getElementById('result4-1').innerHTML = "";
+            document.getElementById('result4-2').innerHTML = "";
+            document.getElementById('result5').innerHTML = "";
+            document.getElementById('result6-1').innerHTML = "";
+            document.getElementById('result6-2').innerHTML = "";
+        }
+    </script>
+</head>
+
+<body>
+    <button type="button" onclick="TS201SpeechRecognizer.startListening(timeoutMillis);">音声認識 開始</button>
+    <button type="button" onclick="TS201SpeechRecognizer.cancelListening();">キャンセル</button>
+    <button type="button" onclick="TS201SpeechRecognizer.stopListening();">終了</button>
+    <button type="button" onclick="clearLog();">ログ クリア</button>
+    <p>ログ:</p>
+    <div id="result1"></div>
+    <div id="result2"></div>
+    <div id="result3"></div>
+    <div id="result4-1"></div>
+    <div id="result4-2"></div>
+    <div id="result5"></div>
+    <div id="result6-1"></div>
+    <div id="result6-2"></div>
+</body>
+</html>
