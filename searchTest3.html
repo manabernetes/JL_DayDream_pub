@@ -15,12 +15,12 @@
         };
 
         TS201SpeechRecognizer.onRmsChanged = function (dB) {
-            // document.getElementById('result3').innerHTML = '3.音声レベルが変更されました: ' + dB + ' dB';
+            document.getElementById('result3').innerHTML = '3.音声レベルが変更されました: ' + dB + ' dB';
         };
 
         TS201SpeechRecognizer.onPartialResults = function (partialResult1, partialResult2) {
-            // document.getElementById('result4-1').innerHTML = '4.音声認識の途中経過（確定済）: ' + partialResult1;
-            // document.getElementById('result4-2').innerHTML = '4.音声認識の途中経過（未確定）: ' + partialResult2;
+            document.getElementById('result4-1').innerHTML = '4.音声認識の途中経過（確定済）: ' + partialResult1;
+            document.getElementById('result4-2').innerHTML = '4.音声認識の途中経過（未確定）: ' + partialResult2;
         };
 
         TS201SpeechRecognizer.onEndOfSpeech = function () {
