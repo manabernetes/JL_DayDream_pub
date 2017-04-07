@@ -53,12 +53,14 @@
 
 <body>
     <p>音声認識テストページ</p>
-    <button type="button" onclick="clearLog(); TS201SpeechRecognizer.startListening(5000); document.getElementById('result7').innerHTML = window.counter++; return false;">音声認識 開始</button>
+    <script>
+        TS201SpeechRecognizer.setTimeoutMillis(5000)
+    </script>
+    <button type="button" onclick="clearLog(); TS201SpeechRecognizer.startListening(); document.getElementById('result7').innerHTML = window.counter++;">音声認識 開始</button>
     <button type="button" onclick="TS201SpeechRecognizer.cancel();">キャンセル</button>
     <button type="button" onclick="TS201SpeechRecognizer.stopListening();">完了</button>
     <button type="button" onclick="TS201SpeechRecognizer.destroy();">破棄</button>
     <button type="button" onclick="clearLog();">ログ クリア</button>
-    <p>onclickイベントが繰り返し呼ばれるバグがあるので注意すること</p>
     <p>ログ:</p>
     <div id="result1"></div>
     <div id="result2"></div>
@@ -68,7 +70,6 @@
     <div id="result5"></div>
     <div id="result6-1"></div>
     <div id="result6-2"></div>
-    <div><span>クリック数: </span><span id="result7"></span></div>
-    
+    <div id="result7"></div>
 </body>
 </html>
